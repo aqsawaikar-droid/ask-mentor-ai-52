@@ -32,11 +32,8 @@ const HRInterviewSimulator = () => {
   const questionCategories: Record<string, string> = {
     '1': 'Behavioral - Teamwork',
     '2': 'Behavioral - Leadership',
-    '3': 'Behavioral - Conflict Resolution',
-    '4': 'Behavioral - Problem Solving',
-    '5': 'Career Goals & Motivation',
-    '6': 'Strengths & Weaknesses',
-    '7': 'Situational Judgment'
+    '3': 'Behavioral - Problem Solving',
+    '4': 'Strengths & Weaknesses'
   };
 
   const questionPool: Record<string, string[]> = {
@@ -55,39 +52,18 @@ const HRInterviewSimulator = () => {
       "Tell me about a time you mentored someone. What was the outcome?"
     ],
     '3': [
-      "Can you share an example of how you resolved a conflict with a colleague?",
-      "Tell me about a disagreement you had with your manager. How did you handle it?",
-      "Describe a situation where two team members were in conflict. What did you do?",
-      "Share an experience where you had to give difficult feedback to someone.",
-      "Tell me about a time when you had to compromise to resolve a workplace issue."
-    ],
-    '4': [
       "Tell me about a complex problem you solved at work. What was your approach?",
       "Describe a situation where you had to think outside the box to find a solution.",
       "Share an experience where you identified a problem before it became serious.",
       "Tell me about a time when your first solution didn't work. What did you do next?",
       "Describe how you handled a situation with incomplete information."
     ],
-    '5': [
-      "Where do you see yourself in 5 years and why are you interested in this role?",
-      "What motivates you to come to work every day?",
-      "Why are you leaving your current position?",
-      "What attracted you to our company specifically?",
-      "How does this role align with your long-term career goals?"
-    ],
-    '6': [
+    '4': [
       "What would you say is your greatest strength and how has it helped you?",
       "What is an area you're actively working to improve?",
       "How would your previous manager describe your work style?",
       "What professional achievement are you most proud of?",
       "Tell me about a skill you've developed recently."
-    ],
-    '7': [
-      "Imagine you have two urgent deadlines. How would you prioritize?",
-      "What would you do if you disagreed with a direct instruction from your supervisor?",
-      "How would you handle a situation where a colleague takes credit for your work?",
-      "If you discovered a mistake in your work after submission, what would you do?",
-      "How would you approach joining a team that's resistant to new members?"
     ]
   };
 
@@ -239,7 +215,7 @@ HIRE RECOMMENDATION: Yes - Shows good teamwork skills with room for growth`,
             <div className="space-y-6">
               <div>
                 <label className="block text-sm font-semibold text-foreground mb-2">
-                  🎯 Role You're Interviewing For
+                  Role You're Interviewing For
                 </label>
                 <input
                   type="text"
@@ -252,7 +228,7 @@ HIRE RECOMMENDATION: Yes - Shows good teamwork skills with room for growth`,
 
               <div>
                 <label className="block text-sm font-semibold text-foreground mb-2">
-                  📊 Years of Experience
+                  Years of Experience
                 </label>
                 <input
                   type="number"
@@ -265,7 +241,7 @@ HIRE RECOMMENDATION: Yes - Shows good teamwork skills with room for growth`,
 
               <div>
                 <label className="block text-sm font-semibold text-foreground mb-2">
-                  👤 Interviewer Personality
+                  Interviewer Personality
                 </label>
                 <div className="space-y-2">
                   {Object.entries(interviewerStyles).map(([id, style]) => (
@@ -288,7 +264,7 @@ HIRE RECOMMENDATION: Yes - Shows good teamwork skills with room for growth`,
 
               <div>
                 <label className="block text-sm font-semibold text-foreground mb-2">
-                  📂 Question Categories (select multiple)
+                  Question Categories (select multiple)
                 </label>
                 <div className="grid grid-cols-1 gap-2">
                   {Object.entries(questionCategories).map(([id, category]) => (
@@ -360,7 +336,7 @@ HIRE RECOMMENDATION: Yes - Shows good teamwork skills with room for growth`,
             {/* Answer Input */}
             <div className="mb-6">
               <label className="block text-sm font-semibold text-foreground mb-2">
-                💬 Your Answer
+                Your Answer
               </label>
               <textarea
                 value={answer}
