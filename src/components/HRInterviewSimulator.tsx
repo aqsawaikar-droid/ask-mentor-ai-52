@@ -39,6 +39,60 @@ const HRInterviewSimulator = () => {
     '7': 'Situational Judgment'
   };
 
+  const questionPool: Record<string, string[]> = {
+    '1': [
+      "Tell me about a time when you worked effectively as part of a team to achieve a goal.",
+      "Describe a situation where you had to collaborate with difficult team members.",
+      "Can you share an experience where your team faced a setback? What was your role?",
+      "Tell me about a project where you had to rely on others to complete your work.",
+      "Describe a time when you helped a struggling team member."
+    ],
+    '2': [
+      "Describe a situation where you had to lead a team through a challenging project.",
+      "Tell me about a time when you took initiative without being asked.",
+      "Share an experience where you had to motivate others during a difficult period.",
+      "Describe a situation where you had to make an unpopular decision as a leader.",
+      "Tell me about a time you mentored someone. What was the outcome?"
+    ],
+    '3': [
+      "Can you share an example of how you resolved a conflict with a colleague?",
+      "Tell me about a disagreement you had with your manager. How did you handle it?",
+      "Describe a situation where two team members were in conflict. What did you do?",
+      "Share an experience where you had to give difficult feedback to someone.",
+      "Tell me about a time when you had to compromise to resolve a workplace issue."
+    ],
+    '4': [
+      "Tell me about a complex problem you solved at work. What was your approach?",
+      "Describe a situation where you had to think outside the box to find a solution.",
+      "Share an experience where you identified a problem before it became serious.",
+      "Tell me about a time when your first solution didn't work. What did you do next?",
+      "Describe how you handled a situation with incomplete information."
+    ],
+    '5': [
+      "Where do you see yourself in 5 years and why are you interested in this role?",
+      "What motivates you to come to work every day?",
+      "Why are you leaving your current position?",
+      "What attracted you to our company specifically?",
+      "How does this role align with your long-term career goals?"
+    ],
+    '6': [
+      "What would you say is your greatest strength and how has it helped you?",
+      "What is an area you're actively working to improve?",
+      "How would your previous manager describe your work style?",
+      "What professional achievement are you most proud of?",
+      "Tell me about a skill you've developed recently."
+    ],
+    '7': [
+      "Imagine you have two urgent deadlines. How would you prioritize?",
+      "What would you do if you disagreed with a direct instruction from your supervisor?",
+      "How would you handle a situation where a colleague takes credit for your work?",
+      "If you discovered a mistake in your work after submission, what would you do?",
+      "How would you approach joining a team that's resistant to new members?"
+    ]
+  };
+
+  const [usedQuestions, setUsedQuestions] = useState<string[]>([]);
+
   useEffect(() => {
     if (screen === 'interview' && timeRemaining > 0) {
       const timer = setInterval(() => {
@@ -61,6 +115,15 @@ const HRInterviewSimulator = () => {
     return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
   };
 
+  const getRandomQuestion = (categoryId: string, used: string[]): string => {
+    const questions = questionPool[categoryId] || questionPool['1'];
+    const available = questions.filter(q => !used.includes(q));
+    if (available.length === 0) {
+      return questions[Math.floor(Math.random() * questions.length)];
+    }
+    return available[Math.floor(Math.random() * available.length)];
+  };
+
   const startInterview = async () => {
     if (!role || !experience) {
       alert('Please fill in all fields');
@@ -68,10 +131,14 @@ const HRInterviewSimulator = () => {
     }
     
     setScreen('interview');
-    // Simulate question generation
+    setUsedQuestions([]);
     setIsGenerating(true);
+    
     setTimeout(() => {
-      setQuestion("Tell me about a time when you had to work closely with a team to achieve a challenging goal. What was your role, and how did you contribute to the team's success?");
+      const categoryId = selectedCategories[0];
+      const newQuestion = getRandomQuestion(categoryId, []);
+      setQuestion(newQuestion);
+      setUsedQuestions([newQuestion]);
       setIsGenerating(false);
     }, 1500);
   };
@@ -128,9 +195,13 @@ HIRE RECOMMENDATION: Yes - Shows good teamwork skills with room for growth`,
       setInterviewData(prev => [...prev, qaData]);
       
       if (currentQuestion < 5 && timeRemaining > 30) {
-        setCurrentQuestion(prev => prev + 1);
+        const nextQuestion = currentQuestion + 1;
+        setCurrentQuestion(nextQuestion);
         setAnswer('');
-        setQuestion("Describe a situation where you faced a significant challenge at work. How did you approach it, and what was the outcome?");
+        const categoryId = selectedCategories[(nextQuestion - 1) % selectedCategories.length];
+        const newQuestion = getRandomQuestion(categoryId, usedQuestions);
+        setQuestion(newQuestion);
+        setUsedQuestions(prev => [...prev, newQuestion]);
       } else {
         handleInterviewEnd();
       }
