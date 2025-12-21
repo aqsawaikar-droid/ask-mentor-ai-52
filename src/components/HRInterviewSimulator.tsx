@@ -30,40 +30,40 @@ const HRInterviewSimulator = () => {
   };
 
   const questionCategories: Record<string, string> = {
-    '1': 'Behavioral - Teamwork',
-    '2': 'Behavioral - Leadership',
-    '3': 'Behavioral - Problem Solving',
-    '4': 'Strengths & Weaknesses'
+    '1': 'Teamwork & Collaboration',
+    '2': 'Problem Solving & Decision Making',
+    '3': 'Adaptability & Growth',
+    '4': 'Communication & Interpersonal Skills'
   };
 
   const questionPool: Record<string, string[]> = {
     '1': [
       "Tell me about a time when you worked effectively as part of a team to achieve a goal.",
-      "Describe a situation where you had to collaborate with difficult team members.",
-      "Can you share an experience where your team faced a setback? What was your role?",
-      "Tell me about a project where you had to rely on others to complete your work.",
-      "Describe a time when you helped a struggling team member."
+      "Describe a situation where you had to collaborate with someone whose work style differed from yours.",
+      "Can you share an experience where your team faced a setback? What was your role in overcoming it?",
+      "Tell me about a time you had to support a colleague who was struggling.",
+      "Describe a project where you had to coordinate with multiple people or departments."
     ],
     '2': [
-      "Describe a situation where you had to lead a team through a challenging project.",
-      "Tell me about a time when you took initiative without being asked.",
-      "Share an experience where you had to motivate others during a difficult period.",
-      "Describe a situation where you had to make an unpopular decision as a leader.",
-      "Tell me about a time you mentored someone. What was the outcome?"
+      "Tell me about a complex problem you solved. What was your approach?",
+      "Describe a situation where you had to make a difficult decision with limited information.",
+      "Share an experience where you identified a problem before it became serious.",
+      "Tell me about a time when your initial solution didn't work. What did you do?",
+      "Describe a situation where you had to prioritize between competing demands."
     ],
     '3': [
-      "Tell me about a complex problem you solved at work. What was your approach?",
-      "Describe a situation where you had to think outside the box to find a solution.",
-      "Share an experience where you identified a problem before it became serious.",
-      "Tell me about a time when your first solution didn't work. What did you do next?",
-      "Describe how you handled a situation with incomplete information."
+      "Tell me about a time you had to quickly adapt to a significant change at work.",
+      "Describe a situation where you had to learn something new in a short time.",
+      "Share an experience where you received critical feedback. How did you respond?",
+      "Tell me about a time you stepped outside your comfort zone professionally.",
+      "Describe how you've handled a situation where expectations or requirements changed unexpectedly."
     ],
     '4': [
-      "What would you say is your greatest strength and how has it helped you?",
-      "What is an area you're actively working to improve?",
-      "How would your previous manager describe your work style?",
-      "What professional achievement are you most proud of?",
-      "Tell me about a skill you've developed recently."
+      "Tell me about a time you had to explain something complex to someone unfamiliar with it.",
+      "Describe a situation where you had to persuade someone to see your point of view.",
+      "Share an experience where miscommunication caused a problem. How did you resolve it?",
+      "Tell me about a time you had to deliver difficult news or feedback to someone.",
+      "Describe a situation where you had to build a relationship with someone you initially struggled to connect with."
     ]
   };
 
